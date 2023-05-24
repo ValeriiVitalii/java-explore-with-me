@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  gateway:
+    build: client #название папки/модуля в корневой директории, где докерфайлы лежат
+    image: client6 #какое дадим название образу
+    container_name: client6 #какое дадим название контейнеру
+    ports:
+      - "9090:9090"
+    depends_on:
+      - server
+    environment:
+      - EXPLOREWITHME_SERVER_URL=http://server77:9292
+
+  server:
+    build: server
+    image: server77
+    container_name: server77
+    ports:
+      - "9292:9292"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/stats
+      - SPRING_DATASOURCE_USERNAME=stats
+      - SPRING_DATASOURCE_PASSWORD=stats
+
+  db:
+    image: postgres:13.7-alpine
+    container_name: dbStats
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_DB=stats
+      - POSTGRES_USER=stats
+      - POSTGRES_PASSWORD=stats
