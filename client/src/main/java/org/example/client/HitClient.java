@@ -1,6 +1,7 @@
-package org.example;
+package org.example.client;
 
 import org.example.config.RestTemplateConfig;
+import org.example.model.HitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -10,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
 @Service
-public class Client extends RestTemplateConfig {
+public class HitClient extends RestTemplateConfig {
     private static final String API_PREFIX = "/hit";
 
     @Autowired
-    public Client(@Value("${exploreWithMe-server.url}") String serverUrl, RestTemplateBuilder builder) {
+    public HitClient(@Value("${exploreWithMe-server.url}") String serverUrl, RestTemplateBuilder builder) {
         super(
                 builder
                         .uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl + API_PREFIX))
@@ -23,7 +24,7 @@ public class Client extends RestTemplateConfig {
         );
     }
 
-    public ResponseEntity<Object> postHit(Hit hit) {
-        return post("", hit);
+    public ResponseEntity<Object> postHit(HitDto hitDto) {
+        return post("", hitDto);
     }
 }

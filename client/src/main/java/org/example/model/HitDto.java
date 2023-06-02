@@ -1,9 +1,7 @@
-package org.example;
+package org.example.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -11,15 +9,9 @@ import java.time.LocalDateTime;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hit {
-
-    Integer id;
-
+public class HitDto {
     String app;
-
     String uri;
-
     String ip;
-
-    LocalDateTime timestamp;
+    String timestamp;
 }

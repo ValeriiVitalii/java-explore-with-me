@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 public class Stats {
 
@@ -14,10 +15,4 @@ public class Stats {
     String uri;
 
     Long hits;
-
-    public Stats(String app, String uri, Long hits) {
-        this.app = app;
-        this.uri = uri;
-        this.hits = hits;
-    }
 }

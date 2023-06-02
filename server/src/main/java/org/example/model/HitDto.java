@@ -3,21 +3,15 @@ package org.example.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@Data
+@Getter
+@Setter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
-public class Stats {
-
+public class HitDto {
     String app;
-
     String uri;
-
-    Long hits;
-
-    public Stats(String app, String uri, Long hits) {
-        this.app = app;
-        this.uri = uri;
-        this.hits = hits;
-    }
+    String ip;
+    String timestamp;
 }

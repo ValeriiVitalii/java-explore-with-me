@@ -3,21 +3,23 @@ package org.example.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@Data
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
-public class Stats {
+public class Hit {
+
+    Integer id;
 
     String app;
 
     String uri;
 
-    Long hits;
+    String ip;
 
-    public Stats(String app, String uri, Long hits) {
-        this.app = app;
-        this.uri = uri;
-        this.hits = hits;
-    }
+    LocalDateTime timestamp;
 }

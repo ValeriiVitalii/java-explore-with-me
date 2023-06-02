@@ -25,6 +25,10 @@ public class RestTemplateConfig {
         return makeAndSendRequest(HttpMethod.POST, path, parameters, body);
     }
 
+    protected ResponseEntity<Object> get(String path, @Nullable Map<String, Object> parameters) {
+        return makeAndSendRequest(HttpMethod.GET, path, parameters, null);
+    }
+
     private <T> ResponseEntity<Object> makeAndSendRequest(HttpMethod method, String path, @Nullable Map<String, Object> parameters, @Nullable T body) {
         HttpEntity<T> requestEntity = new HttpEntity<>(body);
 
