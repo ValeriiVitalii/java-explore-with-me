@@ -2,6 +2,7 @@ package org.example.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.example.model.HitDto;
 
 import java.time.LocalDateTime;
 
