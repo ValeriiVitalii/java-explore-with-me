@@ -22,19 +22,15 @@ public class Hit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column
     @NotBlank
     String app;
 
-    @Column
     @NotBlank
     String uri;
 
-    @Column
     @NotBlank
     String ip;
 
-    @Column
     @NotBlank
     LocalDateTime timestamp;
 }
