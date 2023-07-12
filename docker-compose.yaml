@@ -2,19 +2,19 @@ version: '3.8'
 services:
   gateway:
     build: client #название папки/модуля в корневой директории, где докерфайлы лежат
-    image: client #какое дадим название образу
-    container_name: client #какое дадим название контейнеру
+    image: client11 #какое дадим название образу
+    container_name: client11 #какое дадим название контейнеру
     ports:
       - "9090:9090"
     depends_on:
       - server
     environment:
-      - EXPLOREWITHME_SERVER_URL=http://statsserver:9292
+      - EXPLOREWITHME_SERVER_URL=http://statsserver11:9292
 
   server:
     build: server
-    image: statsserver
-    container_name: statsserver
+    image: statsserver11
+    container_name: statsserver11
     ports:
       - "9292:9292"
     depends_on:
