@@ -18,7 +18,7 @@ public class HitController {
     private HitClient hitClient;
 
     @PostMapping("/hit")
-    public ResponseEntity<Object> postBooking(@Valid @RequestBody HitDto hitDto) {
+    public ResponseEntity<Object> postHit(@Valid @RequestBody HitDto hitDto) {
         return hitClient.postHit(hitDto);
     }
 }
