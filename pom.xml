@@ -30,8 +30,10 @@
 	</properties>
 
 	<modules>
-		<module>client</module>
-		<module>server</module>
+		<module>ewm</module>
+		<module>stats</module>
+		<module>stats/client</module>
+		<module>stats/server</module>
 	</modules>
 
 	<dependencyManagement>
