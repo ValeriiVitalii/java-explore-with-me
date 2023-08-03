@@ -1,4 +1,4 @@
-package main.java.org.example.model;
+package org.example.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

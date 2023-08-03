@@ -31,6 +31,5 @@ public class Hit {
     @NotBlank
     String ip;
 
-    @NotBlank
     LocalDateTime timestamp;
 }

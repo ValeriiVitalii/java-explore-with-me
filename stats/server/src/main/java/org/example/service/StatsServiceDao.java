@@ -28,7 +28,7 @@ public class StatsServiceDao implements StatsService {
     public List<Stats> getStats(LocalDateTime start, LocalDateTime end, String[] uris, Boolean isUnique) {
         List<Stats> stats = new ArrayList<>();
 
-        if (uris == null) {
+        if (uris == null || uris.length == 0) {
             if (isUnique) {
                 stats.addAll(statsRepository.findAllByCreatedBetweenWithUnique(start, end));
             } else {

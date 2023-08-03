@@ -1,9 +1,17 @@
 package practicum.model;
 
+import lombok.Builder;
+import lombok.Data;
+import practicum.utility.RequestStatus;
+
+import java.time.LocalDateTime;
+
+@Builder
+@Data
 public class ParticipationRequestDto {
-    String created;
-    Integer event;
-    Integer id;
-    Integer requester;
-    String status;
+    LocalDateTime created;
+    Long event;
+    Long id;
+    Long requester;
+    RequestStatus status;
 }

@@ -1,8 +1,16 @@
 package practicum.model;
 
+import lombok.Builder;
+import lombok.Data;
+import practicum.utility.RequestStatus;
+
 import java.util.List;
 
+@Builder
+@Data
 public class EventRequestStatusUpdateRequest {
-    List<Integer> requestIds;
-    String status;
+
+    private List<Long> requestIds;
+    private RequestStatus status;
+
 }
