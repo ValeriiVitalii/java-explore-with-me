@@ -3,6 +3,7 @@ package practicum.utility;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import practicum.exception.ValidationException;
 
 @UtilityClass
 public class PageableMaker {
@@ -12,7 +13,7 @@ public class PageableMaker {
         }
 
         if (from < 0 || size <= 0) {
-            //throw new ValidationException("Неправильно указанны параметры для просмотра!");
+            throw new ValidationException("Неправильно указанны параметры для просмотра!");
         }
 
         return PageRequest.of(from / size, size);

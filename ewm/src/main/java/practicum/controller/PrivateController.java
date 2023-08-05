@@ -36,14 +36,18 @@ public class PrivateController {
     private final PrivateEventServiceDao privateEventsService;
 
     private final PrivateRequestService privateRequestService;
+    private final String USERS_USER_ID = "/users/{userId}";
+    private final String EVENTS = "/events";
+    private final String EVENT_ID = "/{eventId}";
+    private final String REQUESTS = "/requests";
 
-    @PostMapping("/users/{userId}/events")
+    @PostMapping(USERS_USER_ID + EVENTS)
     @ResponseStatus(HttpStatus.CREATED)
     public EventFullDto postEvent(@PathVariable Long userId, @RequestBody @Valid NewEventDto newEventDto) {
         return privateEventsService.postEvent(userId, newEventDto);
     }
 
-    @GetMapping("/users/{userId}/events")
+    @GetMapping(USERS_USER_ID + EVENTS)
     public List<EventShortDto> getEvents(@PathVariable Long userId,
                                          @RequestParam(required = false, defaultValue = "0") Integer from,
                                          @RequestParam(required = false, defaultValue = "10") Integer size,
@@ -51,14 +55,14 @@ public class PrivateController {
         return privateEventsService.getEvents(userId, PageableMaker.makePageable(from, size), httpServletRequest);
     }
 
-    @GetMapping("/users/{userId}/events/{eventId}")
+    @GetMapping(USERS_USER_ID + EVENTS + EVENT_ID)
     public EventFullDto getEventById(@PathVariable Long userId,
                                      @PathVariable Long eventId,
                                      HttpServletRequest httpServletRequest) {
         return privateEventsService.getEventById(userId, eventId, httpServletRequest);
     }
 
-    @PatchMapping("/users/{userId}/events/{eventId}/requests")
+    @PatchMapping(USERS_USER_ID + EVENTS + EVENT_ID + REQUESTS)
     public EventRequestStatusUpdateResult patchRequests(@PathVariable Long userId,
                                                         @PathVariable Long eventId,
                                                         @RequestBody(required = false) EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest,
@@ -66,7 +70,7 @@ public class PrivateController {
         return privateEventsService.patchRequests(userId, eventId, eventRequestStatusUpdateRequest, httpServletRequest);
     }
 
-    @PatchMapping("/users/{userId}/events/{eventId}")
+    @PatchMapping(USERS_USER_ID + EVENTS + EVENT_ID)
     public EventFullDto patchEvent(HttpServletRequest httpServletRequest,
                                    @PathVariable Long userId,
                                    @PathVariable Long eventId,
@@ -74,23 +78,23 @@ public class PrivateController {
         return privateEventsService.patchEvent(userId, eventId, updateEventUserRequest, httpServletRequest);
     }
 
-    @GetMapping("/users/{userId}/events/{eventId}/requests")
+    @GetMapping(USERS_USER_ID + EVENTS + EVENT_ID + REQUESTS)
     public List<ParticipationRequestDto> getRequestsForEvent(@PathVariable Long userId, @PathVariable Long eventId) {
         return privateEventsService.getRequestsForEvent(userId, eventId);
     }
 
-    @PostMapping("/users/{userId}/requests")
+    @PostMapping(USERS_USER_ID + REQUESTS)
     @ResponseStatus(HttpStatus.CREATED)
     public ParticipationRequestDto postRequest(@PathVariable Long userId, @RequestParam Long eventId) {
         return privateRequestService.postRequest(userId, eventId);
     }
 
-    @GetMapping("/users/{userId}/requests")
+    @GetMapping(USERS_USER_ID + REQUESTS)
     public List<ParticipationRequestDto> getRequests(@PathVariable Long userId) {
         return privateRequestService.getRequests(userId);
     }
 
-    @PatchMapping("/users/{userId}/requests/{requestId}/cancel")
+    @PatchMapping(USERS_USER_ID + REQUESTS + "/{requestId}/cancel")
     public ParticipationRequestDto patchRequestStateToCancel(@PathVariable Long userId, @PathVariable Long requestId) {
         return privateRequestService.patchRequestStateToCancel(userId, requestId);
     }

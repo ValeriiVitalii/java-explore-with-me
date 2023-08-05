@@ -1,22 +1,25 @@
 package practicum.model;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import practicum.utility.CommentStatus;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 @Builder
 public class CommentDtoResponse {
 
-    private Long id;
+    Long id;
 
-    private String comment;
+    String comment;
 
-    private String created;
+    String created;
 
-    private CommentStatus commentStatus;
+    CommentStatus commentStatus;
 
-    private EventShortDto event;
+    EventShortDto event;
 
-    private UserShortDto commenter;
+    UserShortDto commenter;
 }

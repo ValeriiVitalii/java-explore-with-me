@@ -1,24 +1,26 @@
 package practicum.model;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Data
 public class CompilationDto {
 
     @NotNull
-    private Long id;
+    Long id;
 
     @NotNull
-    private boolean pinned;
+    boolean pinned;
 
     @NotNull
-    private String title;
+    String title;
 
-    private List<EventShortDto> events;
-
+    List<EventShortDto> events;
 }

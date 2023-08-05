@@ -1,14 +1,25 @@
 package practicum.model;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "compilations")
 @Builder
@@ -18,18 +29,17 @@ import java.util.List;
 public class Compilation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    Long id;
 
     @Column(nullable = false)
-    private boolean pinned;
+    boolean pinned;
 
     @Column(length = 50, nullable = false)
-    private String title;
+    String title;
 
     @ManyToMany
     @JoinTable(name = "compilations_events", joinColumns = {@JoinColumn(
             name = "compilation_fk")},
             inverseJoinColumns = {@JoinColumn(name = "event_fk")})
-    private List<Event> events = new ArrayList<>();
-
+    List<Event> events = new ArrayList<>();
 }

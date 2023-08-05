@@ -53,30 +53,37 @@ public class AdminController {
 
     private final AdminCompilationsService adminCompilationsService;
 
-    @PostMapping("/categories")
+    private final String CATEGORIES = "/categories";
+    private final String CAT_ID = "/{catId}";
+    private final String USERS = "/users";
+    private final String EVENTS = "/events";
+    private final String COMPILATIONS = "/compilations";
+    private final String COMP_ID = "/{compId}";
+
+    @PostMapping(CATEGORIES)
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto postCategory(@RequestBody @Valid NewCategoryDto newCategoryDto) {
         return adminCategoryService.postCategory(newCategoryDto);
     }
 
-    @PatchMapping("/categories/{catId}")
+    @PatchMapping(CATEGORIES + CAT_ID)
     public CategoryDto getCategory(@PathVariable Long catId, @RequestBody @Valid NewCategoryDto newCategoryDto) {
         return adminCategoryService.patchCategory(catId, newCategoryDto);
     }
 
-    @DeleteMapping ("/categories/{catId}")
+    @DeleteMapping (CATEGORIES + CAT_ID)
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable Long catId) {
         adminCategoryService.deleteCategory(catId);
     }
 
-    @PostMapping("/users")
+    @PostMapping(USERS)
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto postUser(@RequestBody @Valid NewUserRequest newUserRequest) {
         return adminUserService.postUser(newUserRequest);
     }
 
-    @GetMapping("/users")
+    @GetMapping(USERS)
     public List<UserDto> getUsers(HttpServletRequest request,
                                   @RequestParam(required = false) List<Long> ids,
                                   @RequestParam(required = false, defaultValue = "0") Integer from,
@@ -86,13 +93,13 @@ public class AdminController {
         return adminUserService.getUsers(ids, PageableMaker.makePageable(from, size));
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping(USERS + "/{userId}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long userId) {
         adminUserService.deleteUser(userId);
     }
 
-    @GetMapping("/events")
+    @GetMapping(EVENTS)
     public List<EventFullDto> getEventsAdmin(@RequestParam(required = false) List<Long> users,
                                              @RequestParam(required = false) List<EventState> states,
                                              @RequestParam(required = false) List<Long> categories,
@@ -114,27 +121,27 @@ public class AdminController {
                 httpServletRequest);
     }
 
-    @PatchMapping("/events/{eventId}")
+    @PatchMapping(EVENTS + "/{eventId}")
     public EventFullDto patchEventAdmin(@PathVariable Long eventId,
                                         @RequestBody @Valid UpdateEventAdminRequest updateEventAdminRequest,
                                         HttpServletRequest httpServletRequest) {
         return adminEventService.patchEventAdmin(eventId, updateEventAdminRequest, httpServletRequest);
     }
 
-    @PostMapping("/compilations")
+    @PostMapping(COMPILATIONS)
     @ResponseStatus(HttpStatus.CREATED)
     public CompilationDto postNewCompilation(@RequestBody
                                              @Validated({Create.class}) NewCompilationDto newCompilationDto) {
         return adminCompilationsService.postNewCompilation(newCompilationDto);
     }
 
-    @PatchMapping("/{compId}")
+    @PatchMapping(COMPILATIONS + COMP_ID)
     public CompilationDto patchCompilation(@PathVariable Long compId,
                                            @RequestBody @Validated({Update.class}) NewCompilationDto newCompilationDto) {
         return adminCompilationsService.patchCompilation(compId, newCompilationDto);
     }
 
-    @DeleteMapping("(/compilations/{compId}")
+    @DeleteMapping(COMPILATIONS + COMP_ID)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void postNewCompilation(@PathVariable Long compId) {
         adminCompilationsService.deleteCompilation(compId);

@@ -1,13 +1,16 @@
 package practicum.model;
 
 import com.sun.istack.NotNull;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 @Builder
 public class NewUserRequest {
@@ -15,10 +18,10 @@ public class NewUserRequest {
     @NotBlank
     @Email
     @Size(min = 6, max = 254)
-    private String email;
+    String email;
     @NotBlank
     @NotNull
     @Size(min = 2, max = 250)
-    private String name;
+    String name;
 
 }

@@ -1,35 +1,38 @@
 package practicum.model;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotNull;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Data
 public class EventShortDto {
 
-    private Long id;
+    Long id;
 
     @NotNull
-    private String annotation;
+    String annotation;
 
     @NotNull
-    private CategoryDto category;
+    CategoryDto category;
 
-    private int confirmedRequests;
-
-    @NotNull
-    private String eventDate;
+    int confirmedRequests;
 
     @NotNull
-    private UserShortDto initiator;
+    String eventDate;
 
     @NotNull
-    private boolean paid;
+    UserShortDto initiator;
 
     @NotNull
-    private String title;
+    boolean paid;
 
-    private Long views;
+    @NotNull
+    String title;
+
+    Long views;
 }

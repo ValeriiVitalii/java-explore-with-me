@@ -32,38 +32,40 @@ public class PublicController {
     private final PublicCategoryService publicCategoryService;
 
     private final PublicCompilationService publicCompilationService;
-
     private PublicEventService publicEventService;
+    private final String CATEGORIES = "/categories";
+    private final String EVENTS = "/events";
+    private final String COMPILATIONS = "/compilations";
 
-    @GetMapping("/categories")
+    @GetMapping(CATEGORIES)
     public List<CategoryDto> getCategory(@RequestParam(required = false, defaultValue = "0") Integer from,
                                          @RequestParam(required = false, defaultValue = "10") Integer size) {
         return publicCategoryService.getCategory(PageableMaker.makePageable(from, size));
     }
 
-    @GetMapping("/categories/{catId}")
+    @GetMapping(CATEGORIES + "/{catId}")
     public CategoryDto getCategoryById(@PathVariable @NotNull Long catId) {
         return publicCategoryService.getCategoryById(catId);
     }
 
-    @GetMapping("/compilations")
+    @GetMapping(COMPILATIONS)
     public List<CompilationDto> getCompilations(@RequestParam (required = false) Boolean pinned,
                                                 @RequestParam (required = false, defaultValue = "0") Integer from,
                                                 @RequestParam (required = false, defaultValue = "10") Integer size) {
         return publicCompilationService.getCompilations(pinned, PageableMaker.makePageable(from, size));
     }
 
-    @GetMapping("/compilations/{compId}")
+    @GetMapping(COMPILATIONS + "/{compId}")
     public CompilationDto getCompilationById(@PathVariable Long compId) {
         return publicCompilationService.getCompilationById(compId);
     }
 
-    @GetMapping("/events/{id}")
+    @GetMapping(EVENTS + "/{id}")
     public EventFullDto getEventById(HttpServletRequest httpServletRequest, @PathVariable Long id) {
         return publicEventService.getEventById(httpServletRequest, id);
     }
 
-    @GetMapping("/events")
+    @GetMapping(EVENTS)
     public List<EventFullDto> getEventsFiltered(HttpServletRequest httpServletRequest,
                                                 @RequestParam(required = false) String text,
                                                 @RequestParam(required = false) List<Long> categories,
@@ -87,7 +89,7 @@ public class PublicController {
             rangeEnd = LocalDateTime.now().plusYears(10);
 
         if (rangeEnd.isBefore(LocalDateTime.now()))
-            throw new ValidationException("Дата события не может быть в прошлом");
+            throw new ValidationException("Окончание события не может быть раньше текущего времени");
 
         return publicEventService.getEventsFiltered(text,
                 categories,

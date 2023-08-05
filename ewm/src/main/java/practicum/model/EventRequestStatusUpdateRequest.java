@@ -1,16 +1,19 @@
 package practicum.model;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
 import practicum.utility.RequestStatus;
 
 import java.util.List;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Data
 public class EventRequestStatusUpdateRequest {
 
-    private List<Long> requestIds;
-    private RequestStatus status;
+    List<Long> requestIds;
+    RequestStatus status;
 
 }

@@ -35,7 +35,7 @@ public class AdminCompilationsServiceDao implements AdminCompilationsService{
     @Transactional
     public CompilationDto patchCompilation(long compId, NewCompilationDto newCompilationDto) {
         Compilation compilation = compilationRepository.findById(compId).orElseThrow(
-                () -> new NotFoundException("Подборка не найдена!")
+                () -> new NotFoundException("Подборка с айди:" + compId + "не найдена!")
         );
 
         Optional.ofNullable(newCompilationDto.getEvents()).ifPresent(ge -> compilation.setEvents(eventRepository.findAllById(ge)));
