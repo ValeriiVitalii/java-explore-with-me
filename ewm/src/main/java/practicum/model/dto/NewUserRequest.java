@@ -1,4 +1,4 @@
-package practicum.model;
+package practicum.model.dto;
 
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;

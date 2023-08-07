@@ -1,4 +1,4 @@
-package practicum.model;
+package practicum.model.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

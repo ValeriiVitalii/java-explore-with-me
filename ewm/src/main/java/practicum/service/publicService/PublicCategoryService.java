@@ -1,7 +1,7 @@
 package practicum.service.publicService;
 
 import org.springframework.data.domain.Pageable;
-import practicum.model.CategoryDto;
+import practicum.model.dto.CategoryDto;
 
 import java.util.List;
 

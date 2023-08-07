@@ -2,9 +2,9 @@ package practicum.utility.mappers;
 
 import lombok.experimental.UtilityClass;
 import practicum.model.Comment;
-import practicum.model.CommentDtoResponse;
-import practicum.model.CommentDtoShort;
-import practicum.model.NewCommentDto;
+import practicum.model.dto.CommentDtoResponse;
+import practicum.model.dto.CommentDtoShort;
+import practicum.model.dto.NewCommentDto;
 import practicum.utility.CommentStatus;
 import practicum.utility.EWMDateTimePattern;
 

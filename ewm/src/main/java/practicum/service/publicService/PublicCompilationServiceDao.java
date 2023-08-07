@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practicum.exception.NotFoundException;
-import practicum.model.CompilationDto;
+import practicum.model.dto.CompilationDto;
 import practicum.repository.CompilationRepository;
 import practicum.utility.mappers.CompilationMapper;
 

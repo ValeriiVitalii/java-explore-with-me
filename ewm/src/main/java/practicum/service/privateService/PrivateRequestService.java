@@ -1,6 +1,6 @@
 package practicum.service.privateService;
 
-import practicum.model.ParticipationRequestDto;
+import practicum.model.dto.ParticipationRequestDto;
 
 import java.util.List;
 

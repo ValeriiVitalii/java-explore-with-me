@@ -15,15 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import practicum.model.CategoryDto;
-import practicum.model.CompilationDto;
-import practicum.model.EventFullDto;
-import practicum.model.NewCategoryDto;
-import practicum.model.NewCompilationDto;
-import practicum.model.NewUserRequest;
-import practicum.model.UpdateEventAdminRequest;
-import practicum.model.UserDto;
+import practicum.model.dto.CategoryDto;
+import practicum.model.dto.CommentStatusUpdateRequest;
+import practicum.model.dto.CommentStatusUpdateResult;
+import practicum.model.dto.CompilationDto;
+import practicum.model.dto.EventFullDto;
+import practicum.model.dto.NewCategoryDto;
+import practicum.model.dto.NewCompilationDto;
+import practicum.model.dto.NewUserRequest;
+import practicum.model.dto.UpdateEventAdminRequest;
+import practicum.model.dto.UserDto;
 import practicum.service.adminService.AdminCategoryService;
+import practicum.service.adminService.AdminCommentService;
 import practicum.service.adminService.AdminCompilationsService;
 import practicum.service.adminService.AdminEventService;
 import practicum.service.adminService.AdminUserService;
@@ -53,12 +56,16 @@ public class AdminController {
 
     private final AdminCompilationsService adminCompilationsService;
 
+    private final AdminCommentService adminCommentService;
+
     private final String CATEGORIES = "/categories";
     private final String CAT_ID = "/{catId}";
     private final String USERS = "/users";
     private final String EVENTS = "/events";
     private final String COMPILATIONS = "/compilations";
     private final String COMP_ID = "/{compId}";
+    private final String COMMENTS = "/comments";
+
 
     @PostMapping(CATEGORIES)
     @ResponseStatus(HttpStatus.CREATED)
@@ -145,5 +152,16 @@ public class AdminController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void postNewCompilation(@PathVariable Long compId) {
         adminCompilationsService.deleteCompilation(compId);
+    }
+
+    @DeleteMapping(COMMENTS + "/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteComment(@PathVariable Long commentId) {
+        adminCommentService.deleteComment(commentId);
+    }
+
+    @PatchMapping(COMMENTS)
+    public CommentStatusUpdateResult patchStatusComments(@RequestBody CommentStatusUpdateRequest commentStatusUpdateRequest) {
+        return adminCommentService.patchStatusComments(commentStatusUpdateRequest);
     }
 }

@@ -2,8 +2,8 @@ package practicum.utility.mappers;
 
 import lombok.experimental.UtilityClass;
 import practicum.model.Compilation;
-import practicum.model.CompilationDto;
-import practicum.model.NewCompilationDto;
+import practicum.model.dto.CompilationDto;
+import practicum.model.dto.NewCompilationDto;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package practicum.model;
+package practicum.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;

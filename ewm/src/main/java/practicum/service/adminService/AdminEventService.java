@@ -1,8 +1,8 @@
 package practicum.service.adminService;
 
 import org.springframework.data.domain.Pageable;
-import practicum.model.EventFullDto;
-import practicum.model.UpdateEventAdminRequest;
+import practicum.model.dto.EventFullDto;
+import practicum.model.dto.UpdateEventAdminRequest;
 import practicum.utility.EventState;
 
 import javax.servlet.http.HttpServletRequest;

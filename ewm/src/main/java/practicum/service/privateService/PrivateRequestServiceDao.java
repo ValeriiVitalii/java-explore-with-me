@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import practicum.exception.ForbiddenException;
 import practicum.exception.NotFoundException;
 import practicum.model.Event;
-import practicum.model.ParticipationRequestDto;
+import practicum.model.dto.ParticipationRequestDto;
 import practicum.model.Request;
 import practicum.repository.EventRepository;
 import practicum.repository.RequestRepository;

@@ -2,10 +2,10 @@ package practicum.utility.mappers;
 
 
 import lombok.experimental.UtilityClass;
-import practicum.model.NewUserRequest;
+import practicum.model.dto.NewUserRequest;
 import practicum.model.User;
-import practicum.model.UserDto;
-import practicum.model.UserShortDto;
+import practicum.model.dto.UserDto;
+import practicum.model.dto.UserShortDto;
 
 @UtilityClass
 public class UserMapper {

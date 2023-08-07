@@ -1,4 +1,4 @@
-package practicum.model;
+package practicum.model.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -9,9 +9,9 @@ import practicum.utility.CommentStatus;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 @Builder
-public class CommentDtoResponse {
+public class CommentDtoShort {
 
-    Long id;
+    long id;
 
     String comment;
 
@@ -19,7 +19,5 @@ public class CommentDtoResponse {
 
     CommentStatus commentStatus;
 
-    EventShortDto event;
-
-    UserShortDto commenter;
+    String commenterName;
 }

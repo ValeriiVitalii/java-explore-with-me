@@ -2,7 +2,7 @@ package practicum.utility.mappers;
 
 
 import lombok.experimental.UtilityClass;
-import practicum.model.ParticipationRequestDto;
+import practicum.model.dto.ParticipationRequestDto;
 import practicum.model.Request;
 
 @UtilityClass

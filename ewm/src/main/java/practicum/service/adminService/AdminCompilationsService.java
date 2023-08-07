@@ -1,7 +1,7 @@
 package practicum.service.adminService;
 
-import practicum.model.CompilationDto;
-import practicum.model.NewCompilationDto;
+import practicum.model.dto.CompilationDto;
+import practicum.model.dto.NewCompilationDto;
 
 public interface AdminCompilationsService {
     CompilationDto postNewCompilation(NewCompilationDto newCompilationDto);

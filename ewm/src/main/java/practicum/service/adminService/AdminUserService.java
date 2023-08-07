@@ -2,8 +2,8 @@ package practicum.service.adminService;
 
 
 import org.springframework.data.domain.Pageable;
-import practicum.model.NewUserRequest;
-import practicum.model.UserDto;
+import practicum.model.dto.NewUserRequest;
+import practicum.model.dto.UserDto;
 
 
 import java.util.List;

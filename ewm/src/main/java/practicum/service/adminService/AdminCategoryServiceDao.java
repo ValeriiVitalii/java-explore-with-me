@@ -3,10 +3,10 @@ package practicum.service.adminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import practicum.model.NewCategoryDto;
+import practicum.model.dto.NewCategoryDto;
 import practicum.utility.mappers.CategoryMapper;
 import practicum.model.Category;
-import practicum.model.CategoryDto;
+import practicum.model.dto.CategoryDto;
 import practicum.repository.CategoryRepository;
 
 @Service
