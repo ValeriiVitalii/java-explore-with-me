@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practicum.exception.NotFoundException;
 import practicum.model.Category;
-import practicum.model.CategoryDto;
+import practicum.model.dto.CategoryDto;
 import practicum.repository.CategoryRepository;
 import practicum.utility.mappers.CategoryMapper;
 

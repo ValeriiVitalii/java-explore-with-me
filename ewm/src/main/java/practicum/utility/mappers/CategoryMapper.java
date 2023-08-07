@@ -2,8 +2,8 @@ package practicum.utility.mappers;
 
 import lombok.experimental.UtilityClass;
 import practicum.model.Category;
-import practicum.model.CategoryDto;
-import practicum.model.NewCategoryDto;
+import practicum.model.dto.CategoryDto;
+import practicum.model.dto.NewCategoryDto;
 
 import javax.validation.constraints.NotNull;
 

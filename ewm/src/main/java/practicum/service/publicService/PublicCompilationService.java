@@ -2,7 +2,7 @@ package practicum.service.publicService;
 
 
 import org.springframework.data.domain.Pageable;
-import practicum.model.CompilationDto;
+import practicum.model.dto.CompilationDto;
 
 
 import java.util.List;

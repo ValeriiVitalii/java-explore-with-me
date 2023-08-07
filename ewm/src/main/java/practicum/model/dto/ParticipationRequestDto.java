@@ -1,4 +1,4 @@
-package practicum.model;
+package practicum.model.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -6,14 +6,15 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import practicum.utility.RequestStatus;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Data
-public class EventRequestStatusUpdateRequest {
-
-    List<Long> requestIds;
+public class ParticipationRequestDto {
+    LocalDateTime created;
+    Long event;
+    Long id;
+    Long requester;
     RequestStatus status;
-
 }

@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import practicum.exception.ValidationException;
-import practicum.model.CategoryDto;
-import practicum.model.CompilationDto;
-import practicum.model.EventFullDto;
+import practicum.model.dto.CategoryDto;
+import practicum.model.dto.CommentDtoResponse;
+import practicum.model.dto.CompilationDto;
+import practicum.model.dto.EventFullDto;
 import practicum.service.publicService.PublicCategoryService;
+import practicum.service.publicService.PublicCommentService;
 import practicum.service.publicService.PublicCompilationService;
 import practicum.service.publicService.PublicEventService;
 import practicum.utility.EWMDateTimePattern;
@@ -32,6 +34,8 @@ public class PublicController {
     private final PublicCategoryService publicCategoryService;
 
     private final PublicCompilationService publicCompilationService;
+
+    private final PublicCommentService publicCommentService;
     private PublicEventService publicEventService;
     private final String CATEGORIES = "/categories";
     private final String EVENTS = "/events";
@@ -99,6 +103,16 @@ public class PublicController {
                 onlyAvailable,
                 sort,
                 PageableMaker.makePageable(from, size), httpServletRequest);
+    }
+
+    @GetMapping("/events/{eventId}")
+    public List<CommentDtoResponse> getComments(@PathVariable Long eventId) {
+        return publicCommentService.getComments(eventId);
+    }
+
+    @GetMapping("/{commentId}")
+    public CommentDtoResponse getCommentById(@PathVariable Long commentId) {
+        return publicCommentService.getCommentById(commentId);
     }
 }
 

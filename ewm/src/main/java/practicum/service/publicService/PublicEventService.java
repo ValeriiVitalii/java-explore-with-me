@@ -2,7 +2,7 @@ package practicum.service.publicService;
 
 
 import org.springframework.data.domain.Pageable;
-import practicum.model.EventFullDto;
+import practicum.model.dto.EventFullDto;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;

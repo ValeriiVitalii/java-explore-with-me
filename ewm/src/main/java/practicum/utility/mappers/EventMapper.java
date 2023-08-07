@@ -4,10 +4,11 @@ import lombok.experimental.UtilityClass;
 import practicum.exception.ForbiddenException;
 import practicum.exception.ValidationException;
 import practicum.model.Event;
-import practicum.model.EventShortDto;
-import practicum.model.NewEventDto;
-import practicum.model.UpdateEventAdminRequest;
-import practicum.model.UpdateEventUserRequest;
+import practicum.model.dto.EventShortDto;
+import practicum.model.dto.NewEventDto;
+import practicum.model.dto.UpdateEventAdminRequest;
+import practicum.model.dto.UpdateEventUserRequest;
+import practicum.model.dto.EventFullDto;
 import practicum.utility.EWMDateTimePattern;
 import practicum.utility.EventAdminState;
 import practicum.utility.EventState;
@@ -53,8 +54,8 @@ public class EventMapper {
         return event;
     }
 
-    public practicum.model.EventFullDto toEventFullDto(Event event) {
-        return practicum.model.EventFullDto.builder()
+    public EventFullDto toEventFullDto(Event event) {
+        return EventFullDto.builder()
                 .id(event.getId())
                 .annotation(event.getAnnotation())
                 .category(CategoryMapper.toCategoryDto(event.getCategory()))

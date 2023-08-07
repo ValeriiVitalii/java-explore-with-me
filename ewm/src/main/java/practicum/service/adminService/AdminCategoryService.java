@@ -1,8 +1,8 @@
 package practicum.service.adminService;
 
 
-import practicum.model.CategoryDto;
-import practicum.model.NewCategoryDto;
+import practicum.model.dto.CategoryDto;
+import practicum.model.dto.NewCategoryDto;
 
 public interface AdminCategoryService {
 

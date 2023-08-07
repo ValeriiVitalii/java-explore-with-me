@@ -1,7 +1,13 @@
 package practicum.service.privateService;
 
 import org.springframework.data.domain.Pageable;
-import practicum.model.*;
+import practicum.model.dto.EventFullDto;
+import practicum.model.dto.EventRequestStatusUpdateRequest;
+import practicum.model.dto.EventRequestStatusUpdateResult;
+import practicum.model.dto.EventShortDto;
+import practicum.model.dto.NewEventDto;
+import practicum.model.dto.ParticipationRequestDto;
+import practicum.model.dto.UpdateEventUserRequest;
 
 
 import javax.servlet.http.HttpServletRequest;

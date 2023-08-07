@@ -5,8 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import practicum.utility.mappers.UserMapper;
-import practicum.model.NewUserRequest;
-import practicum.model.UserDto;
+import practicum.model.dto.NewUserRequest;
+import practicum.model.dto.UserDto;
 import practicum.repository.UserRepository;
 
 import java.util.List;
