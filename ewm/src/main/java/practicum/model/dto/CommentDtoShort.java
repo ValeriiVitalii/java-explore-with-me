@@ -11,7 +11,7 @@ import practicum.utility.CommentStatus;
 @Builder
 public class CommentDtoShort {
 
-    long id;
+    Long  id;
 
     String comment;
 
