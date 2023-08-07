@@ -1,22 +1,23 @@
 version: '3.8'
 services:
-  gateway:
-    build: client #название папки/модуля в корневой директории, где докерфайлы лежат
-    image: client11 #какое дадим название образу
-    container_name: client11 #какое дадим название контейнеру
+  ewm:
+    build: ewm #название папки/модуля в корневой директории, где докерфайлы лежат
+    image: ewm7777 #какое дадим название образу
+    container_name: ewm7777 #какое дадим название контейнеру
     ports:
-      - "9090:9090"
-    depends_on:
-      - server
+      - "8080:8080"
     environment:
-      - EXPLOREWITHME_SERVER_URL=http://statsserver11:9292
+      - EXPLOREWITHME_SERVER_URL=http://statsserver5:9090
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm
+      - SPRING_DATASOURCE_USERNAME=ewm
+      - SPRING_DATASOURCE_PASSWORD=ewm
 
   server:
-    build: server
-    image: statsserver11
-    container_name: statsserver11
+    build: stats/server
+    image: statsserver5
+    container_name: statsserver5
     ports:
-      - "9292:9292"
+      - "9090:9090"
     depends_on:
       - db
     environment:
@@ -33,3 +34,13 @@ services:
       - POSTGRES_DB=stats
       - POSTGRES_USER=stats
       - POSTGRES_PASSWORD=stats
+
+  ewm-db:
+    image: postgres:13.7-alpine
+    container_name: ewm-db
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=ewm
+      - POSTGRES_USER=ewm
+      - POSTGRES_PASSWORD=ewm
