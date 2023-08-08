@@ -36,10 +36,10 @@ public class PublicCommentServiceDao implements PublicCommentService {
         for (Comment c : comments) {
             CommentDtoResponse commentDtoResponse = CommentMapper.toCommentDtoResponse(c);
             commentDtoResponse.setCommenter(UserMapper.toUserShortDto(userRepository.findById(c.getCommenter().getId()).orElseThrow(
-                    () -> new NotFoundException("Пользователь не найден!")
+                    () -> new NotFoundException("Пользователь с id:" + c.getCommenter().getId() + "не найден!")
             )));
             commentDtoResponse.setEvent(EventMapper.toEventShortDto(eventRepository.findById(eventId).orElseThrow(
-                    () -> new NotFoundException("Событие не найдено!")
+                    () -> new NotFoundException("Событие с id:" + eventId + "не найдено!")
             )));
             commentDtoResponseList.add(commentDtoResponse);
         }
@@ -49,14 +49,14 @@ public class PublicCommentServiceDao implements PublicCommentService {
     @Override
     public CommentDtoResponse getCommentById(Long commentId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
-                () -> new NotFoundException("Комментарий не найден!")
+                () -> new NotFoundException("Комментарий  с id:" + commentId + "не найден!")
         );
         CommentDtoResponse commentDtoResponse = CommentMapper.toCommentDtoResponse(comment);
         commentDtoResponse.setEvent(EventMapper.toEventShortDto(eventRepository.findById(comment.getEvent().getId()).orElseThrow(
-                () -> new NotFoundException("Событие не найдено!")
+                () -> new NotFoundException("Событие с id:" + comment.getEvent().getId() + "не найдено!")
         )));
         commentDtoResponse.setCommenter(UserMapper.toUserShortDto(userRepository.findById(comment.getCommenter().getId()).orElseThrow(
-                () -> new NotFoundException("Пользователь не найден!")
+                () -> new NotFoundException("Пользователь с id:" + comment.getCommenter().getId() + "не найден!")
         )));
         return commentDtoResponse;
     }

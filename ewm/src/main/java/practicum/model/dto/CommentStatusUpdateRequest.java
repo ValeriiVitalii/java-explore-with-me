@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import practicum.utility.CommentStatus;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -16,8 +16,8 @@ import java.util.List;
 public class CommentStatusUpdateRequest {
 
     @NotEmpty
-    private List<Long> commentIds;
-    @NotBlank
-    private CommentStatus status;
+    List<Long> commentIds;
+    @NotNull
+    CommentStatus status;
 
 }

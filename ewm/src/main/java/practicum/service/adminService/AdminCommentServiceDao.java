@@ -33,7 +33,7 @@ public class AdminCommentServiceDao implements AdminCommentService{
     @Transactional
     public void deleteComment(Long commentId) {
         commentRepository.findById(commentId).orElseThrow(
-                () -> new NotFoundException("Комментарий не найден!")
+                () -> new NotFoundException("Комментарий с id:" + commentId + "не найден!")
         );
 
         commentRepository.deleteById(commentId);
@@ -52,10 +52,10 @@ public class AdminCommentServiceDao implements AdminCommentService{
                 c.setCommentStatus(commentStatusUpdateRequest.getStatus());
                 CommentDtoResponse commentDtoResponse = CommentMapper.toCommentDtoResponse(c);
                 commentDtoResponse.setCommenter(UserMapper.toUserShortDto(userRepository.findById(c.getCommenter().getId()).orElseThrow(
-                        () -> new NotFoundException("Пользователь не найден!")
+                        () -> new NotFoundException("Пользователь с id:" + c.getCommenter().getId() + "не найден!")
                 )));
                 commentDtoResponse.setEvent(EventMapper.toEventShortDto(eventRepository.findById(c.getEvent().getId()).orElseThrow(
-                        () -> new NotFoundException("Событие не найдено!")
+                        () -> new NotFoundException("Событие с id:" + c.getEvent().getId() + "не найдено!")
                 )));
                 if (c.getCommentStatus() == CommentStatus.CONFIRMED) {
                     commentDtoResponseConfirmedList.add(commentDtoResponse);

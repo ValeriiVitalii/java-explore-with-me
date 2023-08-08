@@ -41,14 +41,14 @@ public class PrivateCommentServiceDao implements PrivateCommentService {
         List<Comment> comments = commentRepository.findByCommenterId(userId);
         List<CommentDtoResponse> commentDtoResponseList = new ArrayList<>();
         UserShortDto commenter = UserMapper.toUserShortDto(userRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException("Пользователь не найден!")
+                () -> new NotFoundException("Пользователь с id:" + userId + "не найден!")
         ));
 
         for (Comment c : comments) {
             CommentDtoResponse commentDtoResponse = CommentMapper.toCommentDtoResponse(c);
             commentDtoResponse.setCommenter(commenter);
             commentDtoResponse.setEvent(EventMapper.toEventShortDto(eventRepository.findById(c.getEvent().getId()).orElseThrow(
-                    () -> new NotFoundException("Событие не найдено!")
+                    () -> new NotFoundException("Событие с id:" + c.getEvent().getId() + "не найдено!")
             )));
             commentDtoResponseList.add(commentDtoResponse);
         }
@@ -59,7 +59,7 @@ public class PrivateCommentServiceDao implements PrivateCommentService {
     @Override
     public CommentDtoResponse patchCancelComment(long userId, long commentId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
-                () -> new NotFoundException("Комментарий не найден!")
+                () -> new NotFoundException("Комментарий с id:" + commentId + "не найден!")
         );
 
         if (comment.getCommenter().getId() != userId) {
@@ -74,10 +74,10 @@ public class PrivateCommentServiceDao implements PrivateCommentService {
         commentRepository.save(comment);
         CommentDtoResponse commentDtoResponse = CommentMapper.toCommentDtoResponse(comment);
         commentDtoResponse.setCommenter(UserMapper.toUserShortDto(userRepository.findById(comment.getCommenter().getId()).orElseThrow(
-                () -> new NotFoundException("Пользователь не найдено!")
+                () -> new NotFoundException("Пользователь с id:" + userId + "не найден!")
         )));
         commentDtoResponse.setEvent(EventMapper.toEventShortDto(eventRepository.findById(comment.getEvent().getId()).orElseThrow(
-                () -> new NotFoundException("Событие не найдено!")
+                () -> new NotFoundException("Событие с id:" + comment.getEvent().getId() + "не найдено!")
         )));
 
         return commentDtoResponse;
@@ -86,7 +86,7 @@ public class PrivateCommentServiceDao implements PrivateCommentService {
     @Override
     public void deleteComment(long userId, long commentId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
-                () -> new NotFoundException("Комментарий не найден!")
+                () -> new NotFoundException("Комментарий с id:" + commentId + "не найден!")
         );
 
         if (comment.getCommenter().getId() != userId) {
@@ -100,10 +100,10 @@ public class PrivateCommentServiceDao implements PrivateCommentService {
     @Transactional
     public CommentDtoResponse postNewComment(long userId, long eventId, NewCommentDto newCommentDto) {
         User commenter = userRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException("Пользователь не найден!")
+                () -> new NotFoundException("Пользователь с id:" + userId + "не найден!")
         );
         Event event = eventRepository.findById(eventId).orElseThrow(
-                () -> new NotFoundException("Событие не найдено!")
+                () -> new NotFoundException("Событие с id:" + eventId + "не найдено!")
         );
 
         if (event.getState() != EventState.PUBLISHED)
@@ -139,10 +139,10 @@ public class PrivateCommentServiceDao implements PrivateCommentService {
                 c.setCommentStatus(commentStatusUpdateRequest.getStatus());
                 CommentDtoResponse commentDtoResponse = CommentMapper.toCommentDtoResponse(c);
                 commentDtoResponse.setCommenter(UserMapper.toUserShortDto(userRepository.findById(c.getCommenter().getId()).orElseThrow(
-                        () -> new NotFoundException("Пользователь не найден!")
+                        () -> new NotFoundException("Пользователь с id:" + userId + "не найден!")
                 )));
                 commentDtoResponse.setEvent(EventMapper.toEventShortDto(eventRepository.findById(eventId).orElseThrow(
-                        () -> new NotFoundException("Событие не найдено!")
+                        () -> new NotFoundException("Событие с id:" + eventId + "не найдено!")
                 )));
                 if (c.getCommentStatus() == CommentStatus.CONFIRMED) {
                     commentDtoResponseConfirmedList.add(commentDtoResponse);
